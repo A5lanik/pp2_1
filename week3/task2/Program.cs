@@ -137,6 +137,17 @@ namespace FarManager
                         }
                         history.Peek().SelectedIndex--;
                         break;
+                    case ConsoleKey.F:
+                        int x3 = history.Peek().SelectedIndex;
+                        FileSystemInfo fileSystemInfo3 = history.Peek().Content[x3];
+                        Console.WriteLine("Enter new name:");
+                        string name = Console.ReadLine();
+                        string prev = fileSystemInfo3.FullName;
+
+                        string newName = Path.Combine(Path.GetDirectoryName(prev), name);
+                        Directory.Move(prev, newName);
+                        history.Peek().Draw();
+                        break;
                 }
             }
         }
